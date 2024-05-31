@@ -191,6 +191,12 @@ resource "azurerm_linux_virtual_machine" "sbc" {
     sku       = "ribbon_sbc_swe-lite_vm_release"
     version   = "latest"
   }
+  depends_on = [ 
+    azurerm_virtual_network.sbc,
+    azurerm_managed_disk.data_disk,
+    azurerm_network_interface.web_nic,
+    tls_private_key.example_ssh
+   ]
 }
 
 resource "azurerm_managed_disk" "data_disk" {
